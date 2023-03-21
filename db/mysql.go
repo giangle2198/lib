@@ -16,6 +16,7 @@ func NewMySQLDBHelper(host, username, password, database string, port int) DBHel
 	db, err := initMysql(host, username, password, database, port)
 	if err != nil {
 		fmt.Println("Panic Failed to init mysql", zap.Error(err)) // not log
+		panic(err)
 	}
 	return &dbHelper{
 		db: db,
