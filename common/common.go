@@ -64,3 +64,13 @@ func (rc ReasonCode) Code() string {
 func ParseError(err error) ReasonCode {
 	return ReasonCode(err.Error())
 }
+
+const (
+	FAILED = "FAILED"
+	DONE   = "DONE"
+	ACCEPT = "ACCEPT"
+)
+
+const (
+	DomainMDKey = "domain"
+)
