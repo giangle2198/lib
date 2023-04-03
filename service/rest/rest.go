@@ -69,6 +69,7 @@ func (r *RestfulService) Close() {
 
 func (r *RestfulService) Init() {
 	mux := runtime.NewServeMux(runtime.WithMarshalerOption(runtime.MIMEWildcard, &runtime.JSONPb{}))
+	r.mux = mux
 
 	httpMux := http.NewServeMux()
 	httpMux.Handle("/bim/swagger-ui/", http.StripPrefix("/bim/swagger-ui/", http.FileServer(r.statik)))

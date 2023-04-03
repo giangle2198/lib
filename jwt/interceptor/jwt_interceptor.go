@@ -22,7 +22,7 @@ import (
 type (
 	// JWTAdapter
 	JWTAdapter interface {
-		GenerateToken(ctx context.Context, userID uint32, domain string) (a, b string, c error)
+		GenerateToken(ctx context.Context, userID string, domain string) (a, b string, c error)
 		VerifyToken(ctx context.Context, token, uid, key string) (model.JWTToken, error)
 	}
 
@@ -109,7 +109,7 @@ func getRefreshToken() string {
 }
 
 // GenerateToken generate new token
-func (j *jwtAdapter) GenerateToken(ctx context.Context, userID uint32, domain string) (a, b string, c error) {
+func (j *jwtAdapter) GenerateToken(ctx context.Context, userID string, domain string) (a, b string, c error) {
 	token := jwt.New(j.signingMethod)
 	var claim model.JWTToken
 

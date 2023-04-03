@@ -25,7 +25,7 @@ var letters = []rune(os.Getenv("SECRET_JWT"))
 type (
 	// JWT
 	JWTAuthentication interface {
-		GenerateToken(ctx context.Context, userID uint32, domain string) (string, error)
+		GenerateToken(ctx context.Context, userID string, domain string) (string, error)
 		VerifyToken(ctx context.Context, token, uid, key string) (model.JWTToken, error)
 	}
 
@@ -106,7 +106,7 @@ func getRefreshToken() string {
 	return strings.Replace(id.String(), "=", randString(1), 1)
 }
 
-func (j *jwtAuthentication) GenerateToken(ctx context.Context, userID uint32, domain string) (token string, err error) {
+func (j *jwtAuthentication) GenerateToken(ctx context.Context, userID string, domain string) (token string, err error) {
 
 	jwtClaim := jwt.New(j.signingMethod)
 	var claim model.JWTToken
